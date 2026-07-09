@@ -1,4 +1,5 @@
 using JwtDevApi.Infraestrutura;
+using JwtDevApi.Model;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -14,6 +15,11 @@ builder.Services.AddDbContext<ConnectionContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+
+//INJEÇÃO DE DEPENDENCIA 
+builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+
 
 var app = builder.Build();
 

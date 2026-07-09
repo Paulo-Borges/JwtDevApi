@@ -11,14 +11,17 @@ namespace JwtDevApi.Infraestrutura
             _context = context;
         }
         //private readonly ConnectionContext context = new ConnectionContext();
+
         public void Add(Employee employee)
         {
-            throw new NotImplementedException();
+            _context.Employees.Add(employee);
+            _context.SaveChanges();
         }
 
         public List<Employee> GET()
         {
-            throw new NotImplementedException();
+            return _context.Employees.ToList();
+             
         }
     }
 }
