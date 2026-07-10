@@ -23,5 +23,10 @@ namespace JwtDevApi.Infraestrutura
             return _context.Employees.ToList();
              
         }
+
+        public Employee? GET(int id)
+        {
+            return _context.Employees.Find(id);
+        }
     }
 }

@@ -22,4 +22,8 @@
     <PackageReference Include="Scalar.AspNetCore" Version="2.16.11" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Storage\" />
+  </ItemGroup>
+
 </Project>

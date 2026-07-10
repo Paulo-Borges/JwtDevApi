@@ -2,9 +2,16 @@
 {
     public interface IEmployeeRepository
     {
-        //Vai ter doIS metodos ADICIONAR E LISTAR 
+        //Vai ter metodos ADICIONAR 
         void Add(Employee employee);
+        
+        //Vai ter metodos LISTAR
 
         List<Employee>GET();
+       
+        //Vai ter metodos LISTAR por ID 
+
+        Employee? GET(int id);
+
     }
 }
