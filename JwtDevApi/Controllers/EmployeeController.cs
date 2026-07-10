@@ -1,5 +1,6 @@
 ﻿using JwtDevApi.Model;
 using JwtDevApi.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,7 +18,7 @@ namespace JwtDevApi.Controllers
             _employeeRepository = employeeRepository;
         }
 
-
+        [Authorize]
         [HttpPost]
         public IActionResult Add( [FromForm] EmployeeViewModel employeeView)
         {
@@ -31,6 +32,7 @@ namespace JwtDevApi.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPost]
         [Route("{id}/download")]
         public IActionResult DownloadPhoto(int id)
@@ -42,7 +44,7 @@ namespace JwtDevApi.Controllers
             return File(dataBytes, "image/png");
         }
 
-
+        [Authorize]
         [HttpGet]
         public IActionResult Get()
         {
