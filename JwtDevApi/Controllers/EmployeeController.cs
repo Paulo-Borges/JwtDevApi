@@ -1,5 +1,5 @@
-﻿using JwtDevApi.Model;
-using JwtDevApi.ViewModel;
+﻿using JwtDevApi.Application.ViewModel;
+using JwtDevApi.Domain.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;

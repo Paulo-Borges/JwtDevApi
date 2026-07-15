@@ -1,4 +1,4 @@
-﻿using JwtDevApi.Model;
+﻿using JwtDevApi.Domain.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace JwtDevApi.Infraestrutura

@@ -1,6 +1,6 @@
-﻿using JwtDevApi.Model;
+﻿using JwtDevApi.Domain.Model;
 
-namespace JwtDevApi.Infraestrutura
+namespace JwtDevApi.Infraestrutura.Repositories
 {
     public class EmployeeRepository : IEmployeeRepository
     {

@@ -1,4 +1,4 @@
-﻿namespace JwtDevApi.Model
+﻿namespace JwtDevApi.Domain.Model
 {
     public interface IEmployeeRepository
     {

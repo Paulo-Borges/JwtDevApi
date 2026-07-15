@@ -1,6 +1,7 @@
 using JwtDevApi;
+using JwtDevApi.Domain.Model;
 using JwtDevApi.Infraestrutura;
-using JwtDevApi.Model;
+using JwtDevApi.Infraestrutura.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

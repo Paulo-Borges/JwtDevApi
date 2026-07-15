@@ -1,4 +1,4 @@
-﻿namespace JwtDevApi.ViewModel
+﻿namespace JwtDevApi.Application.ViewModel
 {
     public class EmployeeViewModel
     {

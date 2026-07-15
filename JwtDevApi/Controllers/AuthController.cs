@@ -1,4 +1,4 @@
-﻿using JwtDevApi.Services;
+﻿using JwtDevApi.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JwtDevApi.Controllers
@@ -13,7 +13,7 @@ namespace JwtDevApi.Controllers
         {
             if (username == "borges" && password == "123456")
             {
-                var employee = new Model.Employee("Paulo Borges", 54, "admin");
+                var employee = new Domain.Model.Employee("Paulo Borges", 54, "admin");
                 var token = TokenServices.GenerateToken(employee);
                 return Ok(token);
             }
