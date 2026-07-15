@@ -52,6 +52,8 @@ namespace JwtDevApi.Controllers
         {
             _logger.Log(LogLevel.Error, "Tem um Erro!");
 
+            throw new Exception("Erro de Teste");
+
             var employess = _employeeRepository.GET(pageNumber, pageQuantity);
 
             _logger.LogInformation("Testeee");
