@@ -7,7 +7,7 @@
         
         //Vai ter metodos LISTAR
 
-        List<Employee>GET();
+        List<Employee> GET(int pageNumber, int pageQuantity);
        
         //Vai ter metodos LISTAR por ID 
 

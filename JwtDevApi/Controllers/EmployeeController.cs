@@ -44,11 +44,11 @@ namespace JwtDevApi.Controllers
             return File(dataBytes, "image/png");
         }
 
-        [Authorize]
+        
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(int pageNumber, int pageQuantity)
         {
-            var employess = _employeeRepository.GET();
+            var employess = _employeeRepository.GET(pageNumber, pageQuantity);
             return Ok(employess);
         }
     }

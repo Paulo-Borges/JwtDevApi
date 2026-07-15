@@ -18,9 +18,11 @@ namespace JwtDevApi.Infraestrutura
             _context.SaveChanges();
         }
 
-        public List<Employee> GET()
+
+        // pra usar com PAGINACAO
+        public List<Employee> GET(int pageNumber, int pageQuantity)
         {
-            return _context.Employees.ToList();
+            return _context.Employees.Skip(pageNumber * pageQuantity).Take(pageQuantity).ToList();
              
         }
 
@@ -28,5 +30,7 @@ namespace JwtDevApi.Infraestrutura
         {
             return _context.Employees.Find(id);
         }
+
+       
     }
 }

@@ -16,14 +16,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "JWT Dev API",
-        Version = "v1",
-        Description = "API com autenticação JWT Bearer"
-    });
+    //c.SwaggerDoc("v1", new OpenApiInfo
+    //{
+    //    Title = "JWT Dev API",
+    //    Version = "v1",
+    //    Description = "API com autenticação JWT Bearer"
+    //});
 
-    // Configuração de segurança Bearer
+    // Configuração de segurança Bearer para CRIAR "AUTHORIZE"
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
