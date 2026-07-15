@@ -3,32 +3,64 @@ using JwtDevApi.Infraestrutura;
 using JwtDevApi.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
-using Scalar.AspNetCore;
+using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 
-//conexão com o banco de dados ----------------------------------------------------------------
+// Configurar OpenAPI com Swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "JWT Dev API",
+        Version = "v1",
+        Description = "API com autenticação JWT Bearer"
+    });
+
+    // Configuração de segurança Bearer
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        Description = "Insira o token JWT (apenas o token, sem 'Bearer')"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new List<string>()
+        }
+    });
+});
+
+//conexão com o banco de dados
 builder.Services.AddDbContext<ConnectionContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-
-//INJEÇÃO DE DEPENDENCIA -------------------------------------------------------------------------
+//INJEÇÃO DE DEPENDENCIA
 builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 
-//Validação ou Autenticação  do TOKEN -------------------------------------------------------------
+//Autenticação JWT Bearer
 var key = Encoding.ASCII.GetBytes(JwtDevApi.Key.Secret);
-
 
 builder.Services.AddAuthentication(x =>
 {
@@ -47,20 +79,19 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    //conectar no SCALAR API REFERENCE--------------------------------------------------
-    app.MapScalarApiReference();         
+    app.UseSwagger();
+    app.UseSwaggerUI();
+
+  
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();  // ⚠️ IMPORTANTE: antes do UseAuthorization
 app.UseAuthorization();
 
 app.MapControllers();
