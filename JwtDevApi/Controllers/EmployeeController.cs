@@ -7,15 +7,17 @@ using Microsoft.AspNetCore.Mvc;
 namespace JwtDevApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/employee")]
     public class EmployeeController : ControllerBase
     {
 
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly ILogger<EmployeeController> _logger;
 
-        public EmployeeController(IEmployeeRepository employeeRepository)
+        public EmployeeController(IEmployeeRepository employeeRepository, ILogger<EmployeeController> logger)
         {
             _employeeRepository = employeeRepository;
+            _logger = logger;
         }
 
         [Authorize]
@@ -48,7 +50,11 @@ namespace JwtDevApi.Controllers
         [HttpGet]
         public IActionResult Get(int pageNumber, int pageQuantity)
         {
+            _logger.Log(LogLevel.Error, "Tem um Erro!");
+
             var employess = _employeeRepository.GET(pageNumber, pageQuantity);
+
+            _logger.LogInformation("Testeee");
             return Ok(employess);
         }
     }
