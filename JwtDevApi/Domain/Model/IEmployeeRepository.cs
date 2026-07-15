@@ -1,4 +1,6 @@
-﻿namespace JwtDevApi.Domain.Model
+﻿using JwtDevApi.Domain.DTOs;
+
+namespace JwtDevApi.Domain.Model
 {
     public interface IEmployeeRepository
     {
@@ -7,7 +9,7 @@
         
         //Vai ter metodos LISTAR
 
-        List<Employee> GET(int pageNumber, int pageQuantity);
+        List<EmployeeDTO> GET(int pageNumber, int pageQuantity);
        
         //Vai ter metodos LISTAR por ID 
 
